@@ -4,114 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório</title>
-    <style type="text/css">
-        table.minimalistBlack {
-            border: 3px solid #000000;
-            width: 100%;
-            text-align: left;
-            border-collapse: collapse;
+    <title>Relatório de Alunos</title>
+    <!-- Importando Bootstrap 5 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Estilos personalizados para complementar o Bootstrap */
+        body {
+            background-color: #f8f9fa;
+            color: #333;
         }
 
-        table.minimalistBlack td,
-        table.minimalistBlack th {
-            border: 1px solid #000000;
-            padding: 5px 4px;
+        .report-header {
+            background-color: #0d6efd; /* Azul Bootstrap */
+            color: white;
+            padding: 20px;
+            border-radius: 5px 5px 0 0;
         }
 
-        table.minimalistBlack tbody td {
-            font-size: 13px;
+        .table-header-custom {
+            background-color: #e9ecef;
+            color: #495057;
         }
 
-        table.minimalistBlack tr:nth-child(even) {
-            background: #D8EDFF;
-        }
-
-        table.minimalistBlack thead {
-            background: #CFCFCF;
-            background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-            background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-            background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-            border-bottom: 3px solid #000000;
-        }
-
-        table.minimalistBlack thead th {
-            font-size: 15px;
-            font-weight: bold;
-            color: #000000;
-            text-align: left;
-        }
-
-        table.minimalistBlack tfoot td {
-            font-size: 14px;
-        }
-
-        table.minimalistBlack tfoot {
-            font-size: 14px;
-            font-weight: bold;
-            color: #000000;
-            border-top: 3px solid #000000;
-        }
-
-        table.minimalistBlack tfoot td {
-            font-size: 14px;
+        /* Configurações específicas para impressão */
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .card {
+                border: none;
+                box-shadow: none !important;
+            }
+            .report-header {
+                background-color: white !important;
+                color: black !important;
+                border-bottom: 2px solid black;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            .btn-print {
+                display: none; /* Esconde botão de imprimir na impressão */
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Relatório de Alunos</h1>
-    <p> {{ nome_escola }}</p> 
-    <p> {{ data_lista }} </p> 
-    <hr>
-    <h2>Alunos por Sala:</h2>
-    <table class="minimalistBlack">
-        <thead>
-            <tr>
-                <th>SALA</th>
-                <th>PER&Iacute;ODO</th>
-                <th>ATIVOS</th>
-                <th>MENINAS</th>
-                <th>MENINOS</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in resultados %}
-            <tr>
-                <td>{{ row["Sala"] }}</td>
-                <td>{{ row["Período"] }}</td>
-                <td>{{ row["Quantidade Total de Alunos"] }}</td>
-                <td>{{ row["Quantidade de Meninas"] }}</td>
-                <td>{{ row["Quantidade de Meninos"] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <hr>
-    <h2>Alunos por Período:</h2>
 
-    <table class="minimalistBlack" style="width: 50%;">
-        <thead>
-            <tr>
-                <th>PER&Iacute;ODO</th>
-                <th>ALUNOS</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in periodos %}
-            <tr>
-                <td>{{ row["Período"] }}</td>
-                <td>{{ row["Total de Alunos"] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td>TOTAL</td>
-                <td>{{ total }}</td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <!-- Cabeçalho do Relatório -->
+            <div class="report-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0">Relatório de Alunos</h1>
+                    <p class="mb-0 opacity-75">{{ nome_escola }}</p>
+                </div>
+                <!-- Botão apenas visual para tela -->
+                <button onclick="window.print()" class="btn btn-light btn-sm btn-print">Imprimir</button>
+            </div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between text-muted mb-4">
+                    <small>Data de emissão: <strong>{{ data_lista }}</strong></small>
+                </div>
+
+                <!-- Seção 1: Alunos por Sala -->
+                <h4 class="mb-3 border-bottom pb-2">Alunos por Sala</h4>
+                <div class="table-responsive mb-5">
+                    <table class="table table-striped table-hover table-bordered align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">SALA</th>
+                                <th scope="col">PERÍODO</th>
+                                <th scope="col" class="text-center">ATIVOS</th>
+                                <th scope="col" class="text-center">MENINAS</th>
+                                <th scope="col" class="text-center">MENINOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in resultados %}
+                            <tr>
+                                <td class="fw-bold">{{ row["Sala"] }}</td>
+                                <td>{{ row["Período"] }}</td>
+                                <td class="text-center">{{ row["Quantidade Total de Alunos"] }}</td>
+                                <td class="text-center">{{ row["Quantidade de Meninas"] }}</td>
+                                <td class="text-center">{{ row["Quantidade de Meninos"] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Seção 2: Alunos por Período -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="mb-3 border-bottom pb-2">Alunos por Período</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th scope="col">PERÍODO</th>
+                                        <th scope="col" class="text-end">ALUNOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in periodos %}
+                                    <tr>
+                                        <td>{{ row["Período"] }}</td>
+                                        <td class="text-end">{{ row["Total de Alunos"] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot class="table-dark">
+                                    <tr>
+                                        <td>TOTAL</td>
+                                        <td class="text-end">{{ total }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Fim do Card Body -->
+
+            <div class="card-footer text-muted text-center py-3">
+                <small>Relatório gerado automaticamente.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Bootstrap (Opcional, mas útil para componentes interativos) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
