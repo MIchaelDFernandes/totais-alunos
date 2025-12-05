@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <style type="text/css">
+        table.minimalistBlack {
+            border: 3px solid #000000;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        table.minimalistBlack td,
+        table.minimalistBlack th {
+            border: 1px solid #000000;
+            padding: 5px 4px;
+        }
+
+        table.minimalistBlack tbody td {
+            font-size: 13px;
+        }
+
+        table.minimalistBlack tr:nth-child(even) {
+            background: #D8EDFF;
+        }
+
+        table.minimalistBlack thead {
+            background: #CFCFCF;
+            background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            border-bottom: 3px solid #000000;
+        }
+
+        table.minimalistBlack thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+        }
+
+        table.minimalistBlack tfoot td {
+            font-size: 14px;
+        }
+
+        table.minimalistBlack tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 3px solid #000000;
+        }
+
+        table.minimalistBlack tfoot td {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Relatório de Alunos</h1>
+    <p> {{ nome_escola }}</p> 
+    <p> {{ data_lista }} </p> 
+    <hr>
+    <h2>Alunos por Sala:</h2>
+    <table class="minimalistBlack">
+        <thead>
+            <tr>
+                <th>SALA</th>
+                <th>PER&Iacute;ODO</th>
+                <th>ATIVOS</th>
+                <th>MENINAS</th>
+                <th>MENINOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in resultados %}
+            <tr>
+                <td>{{ row["Sala"] }}</td>
+                <td>{{ row["Período"] }}</td>
+                <td>{{ row["Quantidade Total de Alunos"] }}</td>
+                <td>{{ row["Quantidade de Meninas"] }}</td>
+                <td>{{ row["Quantidade de Meninos"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Alunos por Período:</h2>
+
+    <table class="minimalistBlack" style="width: 50%;">
+        <thead>
+            <tr>
+                <th>PER&Iacute;ODO</th>
+                <th>ALUNOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in periodos %}
+            <tr>
+                <td>{{ row["Período"] }}</td>
+                <td>{{ row["Total de Alunos"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>TOTAL</td>
+                <td>{{ total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
