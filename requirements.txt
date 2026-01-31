@@ -6,5 +6,4 @@ groq
 langchain-core
 langchain-groq
 jinja2
-
-
+altair<5
