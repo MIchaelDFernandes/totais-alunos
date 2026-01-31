@@ -1,0 +1,8 @@
+pdfplumber
+pandas
+streamlit
+langchain
+groq
+langchain-core
+langchain-groq
+jinja2
