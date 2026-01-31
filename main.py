@@ -155,12 +155,12 @@ def apresentar_total_alunos_por_periodo(container):
 
 
 def main():
-    st.title("Contagem de Alunos")
+    st.title("Relatório de Alunos com IA")
     formulario = st.form("Contagem de Alunos")
     relatorio = st.container()
 
     with formulario:
-        pdf_file = st.file_uploader("Carregar arquivo PDF", type=["pdf"])
+        pdf_file = st.file_uploader("Arreste e solte uma lista piloto em pdf aqui", type=["pdf"])
         btn_gerar_relatorio = st.form_submit_button("Gerar Relatório")
 
         if btn_gerar_relatorio:
