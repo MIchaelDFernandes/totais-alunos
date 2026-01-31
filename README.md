@@ -36,42 +36,20 @@ cd seu-repositorio
 
 ### 2. Instalar as dependências
 
-Você pode instalar as dependências de duas formas:
+Recomenda-se criar um ambiente virtual antes de instalar as dependências:
 
-#### Opção A: Usando pip (ambiente virtual recomendado)
-
-Crie um arquivo `requirements.txt` (se não houver) com o seguinte conteúdo e instale:
-```
-streamlit
-pdfplumber
-pandas
-langchain-groq
-langchain-core
-jinja2
-```
-
-Comando de instalação:
 ```bash
+# Criar ambiente virtual
+python -m venv venv
+
+# Ativar o ambiente virtual
+# No Windows:
+venv\Scripts\activate
+# No Linux/Mac:
+source venv/bin/activate
+
+# Instalar as dependências
 pip install -r requirements.txt
-```
-
-#### Opção B: Usando Conda (recomendado)
-
-Se você utiliza a distribuição Anaconda ou Miniconda, pode criar o ambiente diretamente a partir do arquivo `environment.yml`:
-```bash
-conda env create -f environment.yml
-```
-
-Após a criação do ambiente, ative-o:
-```bash
-conda activate nome-do-ambiente
-```
-
-**Nota:** O nome do ambiente será definido no arquivo `environment.yml`. Verifique a primeira linha do arquivo para identificar o nome correto.
-
-Para atualizar um ambiente existente com novas dependências:
-```bash
-conda env update -f environment.yml --prune
 ```
 
 ### 3. Configurar a API Key (Secreta)
@@ -98,8 +76,7 @@ Para que o gerador de relatórios funcione corretamente, certifique-se de que a 
 │   └── relatorio.html       # Template Jinja2 para o relatório final
 ├── .streamlit/
 │   └── secrets.toml         # Chave de API (não versionar)
-├── requirements.txt         # Dependências para pip
-├── environment.yml          # Dependências para conda
+├── requirements.txt         # Dependências do projeto
 └── README.md
 ```
 
