@@ -160,7 +160,7 @@ def main():
     relatorio = st.container()
 
     with formulario:
-        pdf_file = st.file_uploader("Arreste e solte uma lista piloto em pdf aqui", type=["pdf"])
+        pdf_file = st.file_uploader("📂 **Clique abaixo para selecionar sua Lista Piloto em PDF** (Ou arraste o arquivo para a área da nuvem abaixo)", type=["pdf"])
         btn_gerar_relatorio = st.form_submit_button("Gerar Relatório")
 
         if btn_gerar_relatorio:
