@@ -1,0 +1,6 @@
+[theme]
+base="light"
+backgroundColor="#EAF6FF"              # azul céu bem clarinho
+secondaryBackgroundColor="#FFFFFF"
+textColor="#0B1F33"
+primaryColor="#2B7DE9"
