@@ -2,6 +2,10 @@
 
 Este é uma aplicação Streamlit desenvolvida para automatizar a extração e análise de dados de listas de chamadas escolares em formato PDF. O sistema processa o arquivo, contabiliza alunos ativos e utiliza Inteligência Artificial (LLM) para realizar a distinção de gênero baseado nos nomes dos alunos.
 
+🔗 **Acesse a versão online:** [https://total-alunos.streamlit.app/](https://total-alunos.streamlit.app/)
+
+![Captura de tela](Captura%20de%20tela%202026-02-08%20144940.png)
+
 ## ⚙️ Funcionalidades
 
 - **Processamento de PDF:** Lê arquivos PDF contendo listas de turmas.
