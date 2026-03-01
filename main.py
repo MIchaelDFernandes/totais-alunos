@@ -155,7 +155,7 @@ def apresentar_total_alunos_por_periodo(container):
 
 
 def main():
-    st.title("Relatório de Alunos com IA")
+    st.title("📊 Relatório de Alunos")
     formulario = st.form("Contagem de Alunos")
     relatorio = st.container()
 
