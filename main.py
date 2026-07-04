@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 groq = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     api_key=GROQ_API_KEY,
     temperature=0,
 )
@@ -160,7 +160,7 @@ def main():
     relatorio = st.container()
 
     with formulario:
-        pdf_file = st.file_uploader("📂 **Clique abaixo para selecionar sua Lista Piloto em PDF** (Ou arraste o arquivo para a área da nuvem abaixo)", type=["pdf"])
+        pdf_file = st.file_uploader("📂 **Clique abaixo para selecionar sua Lista Piloto em PDF** (Ou arraste o arquivo para a área abaixo)", type=["pdf"])
         btn_gerar_relatorio = st.form_submit_button("Gerar Relatório")
 
         if btn_gerar_relatorio:
